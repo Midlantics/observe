@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: a2a
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: a2a
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U a2a"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ── A2A Backend ───────────────────────────────────────────────────────────────
+  api:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://a2a:${POSTGRES_PASSWORD:-changeme}@db:5432/a2a
+      # VPC mode: disables Supabase JWT, enables /docs, uses API keys only
+      VPC_MODE: "true"
+      # Generate with: python3 -c "import secrets; print(secrets.token_hex(32))"
+      SUPABASE_JWT_SECRET: ${SUPABASE_JWT_SECRET:-not-used-in-vpc-mode}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-*}
+      APP_URL: ${APP_URL:-http://localhost:3000}
+      API_URL: ${API_URL:-http://localhost:8000}
+      APPROVAL_LINK_SECRET: ${APPROVAL_LINK_SECRET:-changeme}
+      # Optional email notifications
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      EMAIL_FROM: ${EMAIL_FROM:-A2A Observe <noreply@example.com>}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pg_data:

@@ -1,0 +1,45 @@
+{
+  "name": "midlantics-a2a",
+  "version": "0.1.0",
+  "description": "Midlantics A2A — agent observability and governance SDK",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./patches/openai": {
+      "import": "./dist/patches/openai.js",
+      "types": "./dist/patches/openai.d.ts"
+    },
+    "./patches/anthropic": {
+      "import": "./dist/patches/anthropic.js",
+      "types": "./dist/patches/anthropic.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["ai", "agents", "observability", "governance", "llm", "opentelemetry"],
+  "license": "Apache-2.0",
+  "homepage": "https://a2a.midlantics.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Navruzjon/a2a.git"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "peerDependencies": {
+    "openai": ">=4",
+    "@anthropic-ai/sdk": ">=0.25"
+  },
+  "peerDependenciesMeta": {
+    "openai": { "optional": true },
+    "@anthropic-ai/sdk": { "optional": true }
+  }
+}
