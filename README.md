@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://a2a.midlantics.com/_next/image?url=%2Flogo.png&w=128&q=75" alt="Midlantics A2A Logo" width="120">
-  <h1>Codios</h1>
-  <p><strong>A2A AI Agent Security Layer — open source enforcement core</strong></p>
+  <h1>Midlantics Observe</h1>
+  <p><strong>A2A AI Agent Observability Layer — open source enforcement core</strong></p>
   <p>
     <a href="https://a2a.midlantics.com">SaaS Dashboard</a> ·
     <a href="https://a2a.midlantics.com/docs">Documentation</a> ·
