@@ -1,3 +1,17 @@
+<div align="center">
+  <img src="https://a2a.midlantics.com/_next/image?url=%2Flogo.png&w=128&q=75" alt="Midlantics A2A Logo" width="120">
+  <h1>Codios</h1>
+  <p><strong>A2A AI Agent Security Layer — open source enforcement core</strong></p>
+  <p>
+    <a href="https://a2a.midlantics.com">SaaS Dashboard</a> ·
+    <a href="https://a2a.midlantics.com/docs">Documentation</a> ·
+    <a href="https://github.com/Midlantics/observe/issues">Issues</a>
+  </p>
+  <img src="https://img.shields.io/badge/license-Apache%202.0-blue" alt="Apache 2.0">
+  <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python 3.10+">
+  <img src="https://img.shields.io/badge/node-18%2B-green" alt="Node 18+">
+</div>
+
 # Midlantics Observe
 
 Open-source AI agent observability and governance toolkit.
